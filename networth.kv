@@ -1,0 +1,65 @@
+WindowManager:
+    OpeningScreen:
+    NetWorthScreen:
+    MonthlyBalanceScreen:
+
+<OpeningScreen>:
+    name: "open"
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "Display networth here"
+            on_release:
+                app.root.current = "networth"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "Display monthly balance here"
+            on_release:
+                app.root.current = "month"
+                root.manager.transition.direction = "left"
+        #Label:
+            #text: "Test font: 1234567890"
+            #font_name: "fonts\Lcd.ttf"
+            #font_size: "10db"
+
+        BoxLayout:
+            Button
+                text: "-"
+                on_press: root.on_minus()
+            TextInput:
+                id: word_input
+                multiline: False
+            Button
+                text: "+"
+                on_press: root.on_plus()
+            Button:
+                text: "Show records"
+                on_press: app.show_records()
+
+
+<NetWorthScreen>:
+    name: "networth"
+    BoxLayout:
+        Button:
+            text: "Go back"
+            pos_hint: {"top": 1, "right": 1}
+            size_hint:  .1, .1
+            on_release:
+                app.root.current = "open"
+                root.manager.transition.direction = "right"
+
+<MonthlyBalanceScreen>:
+    name: "month"
+    BoxLayout:
+        Button:
+            text: "Go back"
+            on_release:
+                app.root.current = "open"
+                root.manager.transition.direction = "right"
+
+
+# Add scroll view to the buttons to view the transaction history
+#<ScrollViewExample@ScrollView>:
+#    StackLayoutExample:   # Layout to be scrolled
+#        size_hint: 1, None
+#        height: self.minimum_height
